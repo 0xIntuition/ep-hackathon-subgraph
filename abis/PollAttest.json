@@ -27,31 +27,6 @@
       {
         "indexed": false,
         "internalType": "string",
-        "name": "entryId",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "listId",
-        "type": "string"
-      }
-    ],
-    "name": "AddedToList",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
         "name": "subject",
         "type": "string"
       },
@@ -84,8 +59,33 @@
     "type": "event"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "option",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "poll",
+        "type": "string"
+      }
+    ],
+    "name": "VotedOnPoll",
+    "type": "event"
+  },
+  {
     "inputs": [],
-    "name": "ITEM_LIST_CONNECTION_DESCRIPTOR",
+    "name": "OPTION_POLL_CONNECTION_DESCRIPTOR",
     "outputs": [
       {
         "internalType": "string",
@@ -94,49 +94,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "entryId",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "listId",
-        "type": "string"
-      },
-      {
-        "internalType": "uint8",
-        "name": "v",
-        "type": "uint8"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "r",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "s",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "_msg",
-        "type": "bytes32"
-      }
-    ],
-    "name": "addToList",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -201,6 +158,49 @@
       }
     ],
     "name": "stake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "option",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "poll",
+        "type": "string"
+      },
+      {
+        "internalType": "uint8",
+        "name": "v",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "r",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "s",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_msg",
+        "type": "bytes32"
+      }
+    ],
+    "name": "voteOnPoll",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

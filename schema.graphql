@@ -1,49 +1,23 @@
 type User @entity {
   id: String!
-  entries: [Entry!]! @derivedFrom(field: "user")
-  attestations: [Attestation!]! @derivedFrom(field: "user")
+  votes: [Vote!]! @derivedFrom(field: "user")
 }
 
-type List @entity {
+type Poll @entity {
   id: String!
-  entries: [Entry!]! @derivedFrom(field: "list")
+  options: [Option!]! @derivedFrom(field: "poll")
+
 }
 
-type Entry @entity {
+type Option @entity {
   id: String!
-  list: List!
+  poll: Poll!
+  numVotes: BigInt!
+  votes: [Vote!]! @derivedFrom(field: "option")
+}
+
+type Vote @entity {
+  id: String!
+  option: Option!
   user: User!
-  attestations: [Attestation!]! @derivedFrom(field: "entry")
 }
-
-enum AttestationScope {
-  LIST
-  ENTRY
-}
-
-type RealityTunnel @entity {
-  id: String!
-  attestations: [Attestation!]! @derivedFrom(field: "realityTunnel")
-}
-
-type Attestation @entity {
-  id: String!
-  scope: AttestationScope!
-  entry: Entry
-  realityTunnel: RealityTunnel
-  user: User!
-  subject: String!
-  descriptor: String! # string
-  stake: BigInt! # uint256
-  isCounterStake: Boolean! # bool
-}
-
-# type CreatedClaim @entity(immutable: true) {
-#   id: Bytes!
-#   user: String! # string
-#   subject: String! # string
-#   descriptor: String! # string
-#   blockNumber: BigInt!
-#   blockTimestamp: BigInt!
-#   transactionHash: Bytes!
-# }

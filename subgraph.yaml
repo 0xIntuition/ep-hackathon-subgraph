@@ -3,25 +3,25 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: ListWrapper
+    name: PollAttest
     network: mumbai
     source:
-      address: "0x70943b2e20536f56efD8F723F080B975BfC378E9"
-      abi: ListWrapper
+      address: "0xdB91c7AF12dd26adf98FF021d7F58F4E57251B4c"
+      abi: PollAttest
       startBlock: 32715939
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AddedToList
-        - CreatedClaim
+        - VotedOnPoll
+        - Staked
       abis:
-        - name: ListWrapper
-          file: ./abis/ListWrapper.json
+        - name: PollAttest
+          file: ./abis/PollAttest.json
       eventHandlers:
-        - event: AddedToList(address,string,string)
-          handler: handleAddedToList
+        - event: VotedOnPoll(address,string,string)
+          handler: handleVotedOnPoll
         - event: Staked(address,string,string,string,uint256,bool)
           handler: handleStaked
-      file: ./src/list-wrapper.ts
+      file: ./src/poll-attest.ts
