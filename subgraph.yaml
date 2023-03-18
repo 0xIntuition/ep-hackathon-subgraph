@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xdB91c7AF12dd26adf98FF021d7F58F4E57251B4c"
       abi: PollAttest
-      startBlock: 32715939
+      startBlock: 33248871
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
