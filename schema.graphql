@@ -1,0 +1,49 @@
+type User @entity {
+  id: String!
+  entries: [Entry!]! @derivedFrom(field: "user")
+  attestations: [Attestation!]! @derivedFrom(field: "user")
+}
+
+type List @entity {
+  id: String!
+  entries: [Entry!]! @derivedFrom(field: "list")
+}
+
+type Entry @entity {
+  id: String!
+  list: List!
+  user: User!
+  attestations: [Attestation!]! @derivedFrom(field: "entry")
+}
+
+enum AttestationScope {
+  LIST
+  ENTRY
+}
+
+type RealityTunnel @entity {
+  id: String!
+  attestations: [Attestation!]! @derivedFrom(field: "realityTunnel")
+}
+
+type Attestation @entity {
+  id: String!
+  scope: AttestationScope!
+  entry: Entry
+  realityTunnel: RealityTunnel
+  user: User!
+  subject: String!
+  descriptor: String! # string
+  stake: BigInt! # uint256
+  isCounterStake: Boolean! # bool
+}
+
+# type CreatedClaim @entity(immutable: true) {
+#   id: Bytes!
+#   user: String! # string
+#   subject: String! # string
+#   descriptor: String! # string
+#   blockNumber: BigInt!
+#   blockTimestamp: BigInt!
+#   transactionHash: Bytes!
+# }
